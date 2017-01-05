@@ -35,7 +35,8 @@ defmodule Scrawler.Mixfile do
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
-     {:phoenix_haml, github: "chrismccord/phoenix_haml"},
+     {:phoenix_haml, github: "nixkid/phoenix_haml", branch: "fix_haml_gen"},
+     {:passport, github: "opendrops/passport"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"}]

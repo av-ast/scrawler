@@ -1,4 +1,4 @@
-defmodule Scrawler.PageControllerTest do
+defmodule Scrawler.WelcomeControllerTest do
   use Scrawler.ConnCase
 
   test "GET /", %{conn: conn} do

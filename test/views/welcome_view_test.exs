@@ -1,3 +1,3 @@
-defmodule Scrawler.PageViewTest do
+defmodule Scrawler.WelcomeViewTest do
   use Scrawler.ConnCase, async: true
 end

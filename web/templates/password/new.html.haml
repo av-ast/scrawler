@@ -1,0 +1,6 @@
+%h3 Request new password
+
+- form_for @conn, password_path(@conn, :reset), [as: :user], fn f ->
+  .form-group
+    = text_input f, :email, placeholder: "email", class: "form-control"
+  = submit "Reset Password", class: "btn btn-primary"

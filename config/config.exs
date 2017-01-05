@@ -20,6 +20,10 @@ config :scrawler, Scrawler.Endpoint,
 config :phoenix, :template_engines,
   haml: PhoenixHaml.Engine
 
+config :passport,
+  resource: Scrawler.User,
+  repo: Scrawler.Repo
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :scrawler,
-  ecto_repos: [Scrawler.Repo]
+  ecto_repos: [Scrawler.Repo],
+  screenshots_base_path: "/tmp/storage/screenshots"
 
 # Configures the endpoint
 config :scrawler, Scrawler.Endpoint,

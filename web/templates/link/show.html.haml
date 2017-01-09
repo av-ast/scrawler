@@ -11,12 +11,11 @@
     = @link.title
 
   %li
-    %strong Screenshot path:
-    = @link.screenshot_path
-
-  %li
     %strong User:
     = @link.user_id
 
+  -# %li
+  -#   %strong Screenshot path:
+  -#   = @link.screenshot_path
 
 = link "Back", to: link_path(@conn, :index)

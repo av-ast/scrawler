@@ -15,7 +15,7 @@ defmodule Scrawler.Link do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:url, :title, :screenshot_path, :user_id])
-    |> validate_required([:url, :title, :screenshot_path, :user_id])
+    |> cast(params, [:url, :title, :user_id])
+    |> validate_required([:url, :user_id])
   end
 end

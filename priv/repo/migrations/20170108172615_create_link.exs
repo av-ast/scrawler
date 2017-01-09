@@ -5,7 +5,6 @@ defmodule Scrawler.Repo.Migrations.CreateLink do
     create table(:links) do
       add :url, :string
       add :title, :string
-      add :screenshot_path, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()

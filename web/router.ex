@@ -11,22 +11,33 @@ defmodule Scrawler.Router do
     plug :current_user
   end
 
+  pipeline :authenticated do
+    plug Scrawler.Plug.Auth
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", Scrawler do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", WelcomeController, :index
+    pipe_through :browser
 
     get "/login", SessionController, :new
     post "/session", SessionController, :create
-    get "/logout", SessionController, :delete
     get "/join", RegistrationController, :new
     post "/register", RegistrationController, :create
     get "/passwords/new", PasswordController, :new
     post "/passwords", PasswordController, :reset
+  end
+
+  scope "/", Scrawler do
+    pipe_through [:browser, :authenticated]
+
+    get "/", WelcomeController, :index
+    get "/logout", SessionController, :delete
+
+    resources "/users", UserController
+    resources "/links", LinkController, only: [:index, :show, :new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

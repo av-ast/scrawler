@@ -3,16 +3,19 @@ defmodule Scrawler.User do
   alias Passport.Password
 
   schema "users" do
+    field :name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
 
-    timestamps
+    has_many :links, Scrawler.Link
+    timestamps()
   end
 
   def changeset(model, params \\ :empty) do model
     |> cast(params, ~w(email), [])
     |> validate_length(:email, min: 1, max: 150)
+    |> validate_length(:name, min: 1, max: 150)
     |> unique_constraint(:email)
   end
 

@@ -5,4 +5,9 @@
     = text_input f, :email, placeholder: "Email", class: "form-control"
   .form-group
     = password_input f, :password, placeholder: "Password", class: "form-control"
+  .form-group
+    = link "Reset Password", to: password_path(@conn, :new)
   = submit "Log in", class: "btn btn-primary"
+  %span
+    or
+    = link "Register", to: registration_path(@conn, :new)

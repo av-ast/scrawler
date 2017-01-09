@@ -23,8 +23,8 @@
           = link "Scrawler", to: welcome_path(@conn, :index), class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active= link "Home", to: welcome_path(@conn, :index)
-            %li= link "Home", to: welcome_path(@conn, :index)
+            = active_link(@conn, "Home", welcome_path(@conn, :index))
+            = active_link(@conn, "Links", link_path(@conn, :index))
           %ul.nav.navbar-nav.navbar-right
             - if @current_user do
               %li= link @current_user.email, to: "#"

@@ -1,0 +1,22 @@
+%h2 Show link
+
+%ul
+
+  %li
+    %strong Url:
+    = @link.url
+
+  %li
+    %strong Title:
+    = @link.title
+
+  %li
+    %strong Screenshot path:
+    = @link.screenshot_path
+
+  %li
+    %strong User:
+    = @link.user_id
+
+
+= link "Back", to: link_path(@conn, :index)

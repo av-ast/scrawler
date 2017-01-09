@@ -24,6 +24,9 @@ config :passport,
   resource: Scrawler.User,
   repo: Scrawler.Repo
 
+config :hound,
+  driver: "phantomjs"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

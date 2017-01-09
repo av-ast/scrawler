@@ -1,0 +1,24 @@
+%h2 Listing links
+
+%table.table
+  %thead
+    %tr
+      %th Url
+      %th Title
+      %th Screenshot path
+      %th User id
+
+      %th
+  %tbody
+    - for link <- @links do
+      %tr
+      %td= link.url
+      %td= link.title
+      %td= link.screenshot_path
+      %td= link.user_id
+
+      %td.text-right
+        = link "Show", to: link_path(@conn, :show, link), class: "btn btn-default btn-xs"
+        = link "Delete", to: link_path(@conn, :delete, link), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"
+
+= link "New link", to: link_path(@conn, :new)

@@ -7,6 +7,11 @@
         Oops, something went wrong! Please check the errors below.
 
   .form-group
+    = label f, :name, class: "control-label"
+    = text_input f, :name, class: "form-control"
+    = error_tag f, :name
+
+  .form-group
     = label f, :email, class: "control-label"
     = text_input f, :email, class: "form-control"
     = error_tag f, :email
@@ -18,3 +23,6 @@
 
   .form-group
     = submit "Register", class: "btn btn-primary"
+    %span
+      or
+      = link "Login", to: session_path(@conn, :new)

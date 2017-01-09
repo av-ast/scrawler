@@ -4,9 +4,9 @@ defmodule Scrawler.Repo.Migrations.CreateUser do
   def change do
     create table(:users) do
       add :email, :string, null: false
-      add :password_hash, :string      
+      add :password_hash, :string
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:users, [:email])

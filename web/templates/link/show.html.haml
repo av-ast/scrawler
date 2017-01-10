@@ -4,7 +4,7 @@
 
   %li
     %strong Url:
-    = @link.url
+    = link @link.url, to: @link.url
 
   %li
     %strong Title:
@@ -12,10 +12,10 @@
 
   %li
     %strong User:
-    = @link.user_id
+    = @link.user.email
 
-  -# %li
-  -#   %strong Screenshot path:
-  -#   = @link.screenshot_path
+  %li
+    %strong Screenshot:
+    %img(src="#{screenshot_url(@link)}")
 
 = link "Back", to: link_path(@conn, :index)

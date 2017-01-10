@@ -2,7 +2,7 @@ defmodule Scrawler.LinkController do
   use Scrawler.Web, :controller
 
   alias Scrawler.Link
-  alias Scrawler.Services.LinkCreator
+  alias Scrawler.Services.LinkFactory
 
   def index(conn, _params) do
     links = Link |> Repo.all() |> Repo.preload([:user])
@@ -17,7 +17,7 @@ defmodule Scrawler.LinkController do
   def create(conn, %{"link" => link_params}) do
     link_params = Map.put(link_params, "user_id", current_user_id(conn))
 
-    case LinkCreator.create(link_params) do
+    case LinkFactory.create(link_params) do
       {:ok, _link} ->
         conn
         |> put_flash(:info, "Link created successfully.")

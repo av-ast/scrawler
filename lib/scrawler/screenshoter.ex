@@ -8,17 +8,19 @@ defmodule Scrawler.Screenshoter do
 
   def make_screenshot(%Link{id: id, url: url, user_id: user_id}) do
     base_path = Application.get_env(:scrawler, :screenshots_base_path)
-    save_path = Path.join([base_path, user_id, "#{id}.png"])
-
-    try do
-      Hound.start_session
-      res = navigate_to(url)
-      title = page_title()
-      Screenshot.take_screenshot("/tmp/123.png")
-      Hound.end_session
-    rescue
-      e -> Logger.error(e)
+    folder = Path.join([base_path, Integer.to_string(user_id)])
+    unless File.exists?(folder) do
+      File.mkdir_p!(folder)
     end
+    save_path = Path.join([folder, Integer.to_string(id) <> ".png"])
+
+    Hound.start_session
+    navigate_to(url)
+    title = page_title()
+    Screenshot.take_screenshot(save_path)
+    Hound.end_session
+
+    title
   end
 
 end

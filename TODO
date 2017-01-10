@@ -1,0 +1,4 @@
+- tests (https://robots.thoughtbot.com/announcing-ex-machina)
+- docker
+- async screenshots (maybe GenStage...)
+- Mailer (https://github.com/kamilc/mailman)

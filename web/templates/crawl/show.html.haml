@@ -1,0 +1,22 @@
+%h2 Show crawl
+
+%ul
+
+  %li
+    %strong Url:
+    = @crawl.url
+
+  %li
+    %strong Max depth:
+    = @crawl.max_depth
+
+  %li
+    %strong Max retries:
+    = @crawl.max_retries
+
+  %li
+    %strong User:
+    = @crawl.user.email
+
+
+= link "Back", to: crawl_path(@conn, :index)

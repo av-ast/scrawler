@@ -43,7 +43,8 @@ defmodule Scrawler.Mixfile do
       {:cowboy, "~> 1.0"},
       {:hound, "~> 1.0"},
       {:ex_machina, "~> 1.0"},
-      {:crawlie, "~> 0.3.0"}
+      {:crawlie, "~> 0.3.0"},
+      {:floki, "~> 0.12.0"}
     ]
   end
 

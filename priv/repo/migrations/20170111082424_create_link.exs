@@ -5,11 +5,11 @@ defmodule Scrawler.Repo.Migrations.CreateLink do
     create table(:links) do
       add :url, :string
       add :title, :string
-      add :user_id, references(:users, on_delete: :nothing)
+      add :crawl_id, references(:crawls, on_delete: :nothing)
 
       timestamps()
     end
-    create index(:links, [:user_id])
+    create index(:links, [:crawl_id])
 
   end
 end

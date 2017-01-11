@@ -36,8 +36,7 @@ defmodule Scrawler.Router do
     get "/", WelcomeController, :index
     get "/logout", SessionController, :delete
 
-    resources "/users", UserController
-    resources "/links", LinkController, only: [:index, :show, :new, :create, :delete]
+    resources "/crawls", CrawlController, only: [:index, :show, :new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

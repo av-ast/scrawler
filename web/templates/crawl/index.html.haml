@@ -1,0 +1,24 @@
+%h2 Listing crawls
+
+%table.table
+  %thead
+    %tr
+      %th Url
+      %th Max depth
+      %th Max retries
+      %th User
+
+      %th
+  %tbody
+    - for crawl <- @crawls do
+      %tr
+      %td= crawl.url
+      %td= crawl.max_depth
+      %td= crawl.max_retries
+      %td= crawl.user.email
+
+      %td.text-right
+        = link "Show", to: crawl_path(@conn, :show, crawl), class: "btn btn-default btn-xs"
+        = link "Delete", to: crawl_path(@conn, :delete, crawl), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"
+
+= link "New crawl", to: crawl_path(@conn, :new)

@@ -8,7 +8,7 @@ defmodule Scrawler.User do
     field :password, :string, virtual: true
     field :password_hash, :string
 
-    has_many :links, Scrawler.Link
+    has_many :crawls, Scrawler.Crawl
     timestamps()
   end
 

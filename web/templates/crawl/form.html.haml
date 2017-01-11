@@ -10,4 +10,14 @@
     = error_tag f, :url
 
   .form-group
+    = label f, :max_depth, class: "control-label"
+    = number_input f, :max_depth, class: "form-control"
+    = error_tag f, :max_depth
+
+  .form-group
+    = label f, :max_retries, class: "control-label"
+    = number_input f, :max_retries, class: "form-control"
+    = error_tag f, :max_retries
+
+  .form-group
     = submit "Submit", class: "btn btn-primary"

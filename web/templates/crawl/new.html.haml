@@ -1,0 +1,5 @@
+%h2 New crawl
+
+= render "form.html", changeset: @changeset, action: crawl_path(@conn, :create)
+
+= link "Back", to: crawl_path(@conn, :index)

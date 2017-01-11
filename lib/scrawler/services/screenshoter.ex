@@ -1,4 +1,4 @@
-defmodule Scrawler.Screenshoter do
+defmodule Scrawler.Services.Screenshoter do
   use Hound.Helpers
 
   alias Hound.Helpers.Screenshot

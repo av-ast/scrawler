@@ -19,7 +19,7 @@ defmodule Scrawler.Mixfile do
   def application do
     [mod: {Scrawler, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :hound, :ex_machina]]
+                    :phoenix_ecto, :postgrex, :hound, :ex_machina, :crawlie]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +42,8 @@ defmodule Scrawler.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:hound, "~> 1.0"},
-      {:ex_machina, "~> 1.0"}
+      {:ex_machina, "~> 1.0"},
+      {:crawlie, "~> 0.3.0"}
     ]
   end
 

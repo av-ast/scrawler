@@ -1,14 +1,14 @@
 defmodule Scrawler.Services.LinkFactory do
   alias Scrawler.Link
   alias Scrawler.Repo
+  alias Scrawler.Services.Screenshoter
 
   def create(params) do
     changeset = Link.changeset(%Link{}, params)
 
     case Repo.insert(changeset) do
       {:ok, link} ->
-        #TODO: make it async (queues, etc...)
-        page_title = Scrawler.Screenshoter.make_screenshot(link)
+        page_title = Screenshoter.make_screenshot(link)
         Link.changeset(link, %{title: page_title}) |> Repo.update
       {:error, changeset} ->
         {:error, changeset}

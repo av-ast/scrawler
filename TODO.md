@@ -2,3 +2,4 @@
 * docker
 * async screenshots (maybe GenStage...)
 * mailer [https://github.com/kamilc/mailman](https://github.com/kamilc/mailman)
+* doc for modules & functions

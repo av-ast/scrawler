@@ -13,13 +13,9 @@ defmodule Scrawler.Services.Crawler do
       max_retries: crawl.max_retries
     ]
 
-    Logger.error("====================")
-    Logger.error(inspect(crawl.url))
-    Logger.error(inspect(options))
-    results = Crawlie.crawl([crawl.url], ParseLogic, options)
-    |> Flow.partition()
-    Logger.error(inspect(results))
-    Logger.error("====================")
+    Crawlie.crawl([crawl.url], ParseLogic, options)
+    |> Enum.to_list
+    |> Enum.into(%{})
   end
 
 end

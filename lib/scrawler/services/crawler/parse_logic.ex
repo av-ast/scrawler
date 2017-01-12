@@ -7,8 +7,6 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
   Parses page
 	"""
 	def parse(url, body, _options) do
-    Logger.info "parsing     " <> url
-
     try do
       {:ok, Floki.parse(body)}
     rescue
@@ -20,18 +18,28 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
 	@doc """
   Extracts titles of pages
 	"""
-	def extract_data(_url, body, _options) do
-    res = case Regex.run(~r/<title>([^<>]*)<\/title>/ims, body, capture: :all_but_first) do
-      nil -> "no title recognized"
-      title -> title
-    end
-    Logger.info "title     " <> res
-    res
+  def extract_data(url, parsed, _options) do
+    title = parsed |> Floki.find("title") |> Floki.text()
+    ["#{url}": title]
   end
 
-  def extract_links(_url, parsed, _options) do
-    res = Floki.attribute(parsed, "a", "href")
-    Logger.info "links     " <> res
-    res
+  def extract_links(url, parsed, _options) do
+    Floki.attribute(parsed, "a", "href") |> Enum.map(&prepare_url(url, &1))
   end
+
+  defp prepare_url(parent_url, url) do
+    %URI{scheme: scheme, host: host} = URI.parse(parent_url)
+
+    cond do
+      String.starts_with?(url, "//") ->
+        "#{scheme}:#{url}"
+      String.starts_with?(url, "/") ->
+        "#{scheme}://#{host}#{url}"
+      String.starts_with?(url, "#") ->
+        parent_url <> url
+      true ->
+        url
+    end
+  end
+
 end

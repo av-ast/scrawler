@@ -5,7 +5,7 @@ defmodule Scrawler.CrawlController do
   alias Scrawler.Factories.CrawlFactory
 
   def index(conn, _params) do
-    crawls = Crawl |> Repo.all |> Repo.preload([:user])
+    crawls = Crawl |> Repo.all() |> Repo.preload([:user])
     render(conn, "index.html", crawls: crawls)
   end
 

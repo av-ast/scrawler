@@ -2,7 +2,6 @@ require Logger
 
 defmodule Scrawler.Services.Crawler do
   alias Scrawler.Services.Crawler.ParseLogic
-  alias Experimental.Flow
 
   @doc """
   Runs crawler

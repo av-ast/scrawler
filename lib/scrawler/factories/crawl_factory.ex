@@ -9,7 +9,10 @@ defmodule Scrawler.Factories.CrawlFactory do
 
     case Repo.insert(changeset) do
       {:ok, crawl} ->
-        Crawler.run(crawl)
+        crawl |> Crawl.launch() |> Repo.update!()
+        for {k, v} <- Crawler.run(crawl) do
+
+        end
         {:ok, crawl}
       {:error, changeset} ->
         {:error, changeset}

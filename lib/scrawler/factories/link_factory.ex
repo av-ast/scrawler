@@ -8,8 +8,8 @@ defmodule Scrawler.Factories.LinkFactory do
 
     case Repo.insert(changeset) do
       {:ok, link} ->
-        page_title = Screenshoter.make_screenshot(link)
-        Link.changeset(link, %{title: page_title}) |> Repo.update
+        Screenshoter.make_screenshot(link)
+        {:ok, link}
       {:error, changeset} ->
         {:error, changeset}
     end

@@ -6,7 +6,7 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
 	@doc """
   Parses page
 	"""
-	def parse(url, body, _options) do
+	def parse(_url, body, _options) do
     try do
       {:ok, Floki.parse(body)}
     rescue

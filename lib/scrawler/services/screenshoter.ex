@@ -5,12 +5,11 @@ defmodule Scrawler.Services.Screenshoter do
   alias Scrawler.Link
 
   @doc """
-  Makes screenshot for the given link
+  Makes screenshot of web-page for the given link
   """
   def make_screenshot(%Link{url: url} = link) do
     Hound.start_session
     navigate_to(url)
-    title = page_title()
 
     link
       |> Link.screenshot_path
@@ -18,7 +17,6 @@ defmodule Scrawler.Services.Screenshoter do
       |> Screenshot.take_screenshot
 
     Hound.end_session
-    title
   end
 
   defp prepare_folder(screenshot_path) do

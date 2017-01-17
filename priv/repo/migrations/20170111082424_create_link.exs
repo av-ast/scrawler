@@ -9,7 +9,8 @@ defmodule Scrawler.Repo.Migrations.CreateLink do
 
       timestamps()
     end
-    create index(:links, [:crawl_id])
 
+    create index(:links, [:crawl_id])
+    create unique_index(:links, [:url])
   end
 end

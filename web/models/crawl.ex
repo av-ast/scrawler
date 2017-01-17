@@ -16,7 +16,7 @@ defmodule Scrawler.Crawl do
     field :state, :string, default: "created"
 
     belongs_to :user, Scrawler.User
-    has_many :links, Scrawler.Link
+    has_many :links, Scrawler.Link, on_delete: :delete_all
 
     timestamps()
   end

@@ -17,6 +17,7 @@ defmodule Scrawler.Link do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:url, :title, :crawl_id])
+    |> unique_constraint(:url)
     |> validate_required([:url, :crawl_id])
   end
 

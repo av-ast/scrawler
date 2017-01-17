@@ -3,10 +3,10 @@ require Logger
 defmodule Scrawler.Services.Crawler.ParseLogic do
   @behaviour Crawlie.ParserLogic
 
-	@doc """
+  @doc """
   Parses page
-	"""
-	def parse(_url, body, _options) do
+  """
+  def parse(_url, body, _options) do
     try do
       {:ok, Floki.parse(body)}
     rescue
@@ -15,14 +15,17 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
     end
   end
 
-	@doc """
-  Extracts titles of pages
-	"""
+  @doc """
+  Extracts title of page
+  """
   def extract_data(url, parsed, _options) do
     title = parsed |> Floki.find("title") |> Floki.text()
-    ["#{url}": title]
+    [{url, title}]
   end
 
+  @doc """
+  Extracts links from page source
+  """
   def extract_links(url, parsed, _options) do
     Floki.attribute(parsed, "a", "href") |> Enum.map(&prepare_url(url, &1))
   end

@@ -18,5 +18,15 @@
     %strong User:
     = @crawl.user.email
 
+  %li
+    %strong Links:
+    %table.table
+      %tr
+        %th Link
+        %th Screenshot
+      - for link <- @crawl.links do
+        %tr
+          %td= link link.title, to: link.url
+          %td= link "Screenshot", to: Link.screenshot_url(link)
 
 = link "Back", to: crawl_path(@conn, :index)

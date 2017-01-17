@@ -10,7 +10,7 @@ defmodule Scrawler.CrawlController do
   end
 
   def new(conn, _params) do
-    changeset = Crawl.changeset(%Crawl{}, %{max_depth: 0, max_retries: 3})
+    changeset = Crawl.changeset(%Crawl{}, %{max_depth: 1, max_retries: 3})
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -28,7 +28,7 @@ defmodule Scrawler.CrawlController do
   end
 
   def show(conn, %{"id" => id}) do
-    crawl = Crawl |> Repo.get!(id) |> Repo.preload([:user])
+    crawl = Crawl |> Repo.get!(id) |> Repo.preload([:user, :links])
     render(conn, "show.html", crawl: crawl)
   end
 

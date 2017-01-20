@@ -1,0 +1,44 @@
+web:
+  build: .
+  volumes:
+    - .:/myapp
+    - ~/.ssh:/root/.ssh
+    - ~/.bash_history:/root/.bash_history
+  ports:
+    - 4000:4000
+  links:
+    - db
+    - phantomjs
+  command: mix do local.hex --force, compile, ecto.create, ecto.migrate, phoenix.server
+  environment:
+    - DATABASE_HOST=db
+    - DATABASE_PORT=5432
+    - DATABASE_USERNAME=postgres
+    - DATABASE_PASSWORD=postgres
+    - DATABASE_NAME=scrawler_dev
+    - DATABASE_POOLSIZE=10
+    - BUNDLE_PATH=/bundle_cache
+    - PHANTOMJS_HOST=phantomjs
+    - PHANTOMJS_PORT=8910
+  volumes_from:
+    - bundle_cache
+    - static_server
+db:
+  image: postgres
+
+phantomjs:
+  image: wernight/phantomjs
+  command: phantomjs --wd
+
+bundle_cache:
+  image: busybox
+  volumes:
+    - /bundle_cache
+
+static_server:
+  image: ruby
+  command: ruby -run -ehttpd "/tmp/storage/screenshots" -p8000
+  ports:
+    - 8000:8000
+  volumes:
+    - /tmp/storage/screenshots

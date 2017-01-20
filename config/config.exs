@@ -27,7 +27,12 @@ config :passport,
   repo: Scrawler.Repo
 
 config :hound,
-  driver: "phantomjs"
+  driver: "phantomjs",
+  http: [
+    ssl: [{:versions, [:'tlsv1.2']}],
+    timeout: :infinity,
+    recv_timeout: :infinity
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -36,8 +36,12 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :scrawler, Scrawler.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "scrawler_dev",
-  hostname: "localhost",
-  pool_size: 10
+  username: System.get_env("DATABASE_USERNAME") || "postgres",
+  password: System.get_env("DATABASE_PASSWORD") || "postgres",
+  database: System.get_env("DATABASE_NAME") || "scrawler_dev",
+  hostname: System.get_env("DATABASE_HOST") || "localhost",
+  pool_size: System.get_env("DATABASE_POOLSIZE") || 10
+
+config :hound,
+  host: System.get_env("PHANTOMJS_HOST") || "localhost",
+  port: System.get_env("PHANTOMJS_PORT") || 8910

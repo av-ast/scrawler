@@ -10,10 +10,11 @@ defmodule Scrawler.Factories.CrawlFactory do
     case Repo.insert(changeset) do
       {:ok, crawl} ->
         {:ok, launched_crawl} = Crawl.launch(crawl) |> Repo.update()
-        #TODO: async
+        Task.start(fn ->
           Crawler.run(launched_crawl)
           Crawl.succeed(launched_crawl) |> Repo.update!()
-        {:ok, crawl}
+        end)
+        {:ok, launched_crawl}
       {:error, changeset} ->
         {:error, changeset}
     end

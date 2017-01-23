@@ -21,7 +21,7 @@ defmodule Scrawler.Factories.LinkFactory do
 
     case Repo.insert(changeset) do
       {:ok, link} ->
-        Task.start(fn -> Screenshoter.make_screenshot(link) end)
+        Screenshoter.make_screenshot(link)
         {:ok, link}
       {:error, changeset} ->
         {:error, changeset}

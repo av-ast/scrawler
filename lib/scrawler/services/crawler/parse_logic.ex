@@ -7,6 +7,8 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
 
   @behaviour Crawlie.ParserLogic
 
+  alias Scrawler.Utils.Uri
+
   @doc """
   Parses page
   """
@@ -31,22 +33,20 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
   Extracts links from page source
   """
   def extract_links(url, parsed, _options) do
-    #TODO: skip urls from another domain
-    Floki.attribute(parsed, "a", "href") |> Enum.map(&prepare_url(url, &1))
+    parsed
+    |> Floki.attribute("a", "href")
+    |> Enum.map(&Uri.expand_url(url, &1))
+    |> Enum.filter(&filter_url(url, &1))
   end
 
-  defp prepare_url(parent_url, url) do
-    %URI{scheme: scheme, host: host} = URI.parse(parent_url)
-
+  defp filter_url(parent_url, url) do
     cond do
-      String.starts_with?(url, "//") ->
-        "#{scheme}:#{url}"
-      String.starts_with?(url, "/") ->
-        "#{scheme}://#{host}#{url}"
-      String.starts_with?(url, "#") ->
-        parent_url <> url
+      Uri.same_urls(parent_url, url) ->
+        false
+      Uri.same_subdomain(parent_url, url) ->
+        true
       true ->
-        url
+        false
     end
   end
 

@@ -4,7 +4,7 @@
 
   %li
     %strong Url:
-    = @crawl.url
+    = link @crawl.url, to: @crawl.url
 
   %li
     %strong Max depth:
@@ -19,14 +19,20 @@
     = @crawl.user.email
 
   %li
-    %strong Links:
+    %strong Links count:
+    = length @crawl.links
+
     %table.table
       %tr
+        %th ID
+        %th Title
         %th Link
         %th Screenshot
       - for link <- @crawl.links do
         %tr
+          %td= link.id
           %td= link link.title, to: link.url
+          %td= link link.url, to: link.url
           %td= link "Screenshot", to: Link.screenshot_url(link)
 
 = link "Back", to: crawl_path(@conn, :index)

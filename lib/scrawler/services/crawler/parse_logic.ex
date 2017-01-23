@@ -1,6 +1,10 @@
 require Logger
 
 defmodule Scrawler.Services.Crawler.ParseLogic do
+  @moduledoc """
+  Implements callbacks for Crawlie parser.
+  """
+
   @behaviour Crawlie.ParserLogic
 
   @doc """
@@ -27,6 +31,7 @@ defmodule Scrawler.Services.Crawler.ParseLogic do
   Extracts links from page source
   """
   def extract_links(url, parsed, _options) do
+    #TODO: skip urls from another domain
     Floki.attribute(parsed, "a", "href") |> Enum.map(&prepare_url(url, &1))
   end
 

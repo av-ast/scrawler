@@ -1,9 +1,24 @@
 defmodule Scrawler.Factories.CrawlFactory do
+  @moduledoc """
+  Creates Crawl instance and launches crawler for its URL.
+  New crawl marked with state 'launched'.
+  Then crawler runs asynchronously (via Task).
+  After crawler finishes crawl's state changes to 'succeeded'.
+  """
+
   alias Scrawler.Crawl
   alias Scrawler.Repo
   alias Scrawler.Services.Crawler
 
-  @doc false
+  @doc """
+  Creates Crawl instance and launches crawler for the given params.
+
+  ## Parameters
+
+    - params: Params for the new Crawl instance.
+
+  """
+	@spec create(Ecto.Schema.t | Ecto.Changeset.t) :: {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
   def create(params) do
     changeset = Crawl.changeset(%Crawl{}, params)
 

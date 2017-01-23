@@ -3,8 +3,12 @@ defmodule Scrawler.Plug.Auth do
   import Plug.Conn
   import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
 
+  @doc false
   def init(opts), do: opts
 
+  @doc """
+  Redirects unsigned users to sign-in form.
+  """
   def call(conn, _opts) do
     if conn.assigns.current_user do
       conn

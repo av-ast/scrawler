@@ -45,7 +45,10 @@ defmodule Scrawler.Mixfile do
       {:ex_machina, "~> 1.0"},
       {:crawlie, "~> 0.3.0"},
       {:floki, "~> 0.12.0"},
-      {:ecto_state_machine, "~> 0.2.0"}
+      {:ecto_state_machine, "~> 0.2.0"},
+
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 

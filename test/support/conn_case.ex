@@ -26,6 +26,7 @@ defmodule Scrawler.ConnCase do
       import Ecto.Query
 
       import Scrawler.Router.Helpers
+      import Scrawler.Factory
 
       # The default endpoint for testing
       @endpoint Scrawler.Endpoint

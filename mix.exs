@@ -38,7 +38,6 @@ defmodule Scrawler.Mixfile do
       {:phoenix_html, "~> 2.6"},
       {:phoenix_haml, github: "nixkid/phoenix_haml", branch: "fix_haml_gen"},
       {:passport, github: "opendrops/passport"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:hound, "~> 1.0"},
@@ -47,6 +46,7 @@ defmodule Scrawler.Mixfile do
       {:floki, "~> 0.12.0"},
       {:ecto_state_machine, "~> 0.2.0"},
 
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev}
     ]

@@ -6,7 +6,7 @@ defmodule Scrawler.PasswordController do
     |> render(:new)
   end
 
-  def reset(conn, %{"user" => %{"email" => email}}) do
+  def reset(conn, %{"user" => %{"email" => _email}}) do
     conn
     |> put_flash(:info, "Password reset link has been sent to your email address.")
     |> redirect(to: session_path(conn, :new))

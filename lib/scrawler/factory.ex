@@ -3,7 +3,7 @@ defmodule Scrawler.Factory do
 
 	def user_factory do
     %Scrawler.User{
-      name: "Jane Smith",
+      name: sequence("Jane Smith"),
       email: sequence(:email, &"email-#{&1}@example.com"),
       crawls: build_pair(:crawl)
     }

@@ -34,6 +34,16 @@ config :hound,
     recv_timeout: :infinity
   ]
 
+config :pooler,
+  pools: [
+    [
+      {:name, "phantom_pool"},
+      {:init_count, 5},
+      {:max_count, 15},
+      {:start_mfa, {Scrawler.Workers.PhantomWorker, :start_link, []}}
+    ]
+  ]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

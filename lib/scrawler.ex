@@ -12,6 +12,7 @@ defmodule Scrawler do
       supervisor(Scrawler.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Scrawler.Endpoint, []),
+      supervisor(:pooler_sup, []),
       # Start your own worker by calling: Scrawler.Worker.start_link(arg1, arg2, arg3)
       # worker(Scrawler.Worker, [arg1, arg2, arg3]),
     ]

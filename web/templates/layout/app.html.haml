@@ -11,8 +11,8 @@
     %link(rel="stylesheet" href='#{static_path(@conn, "/css/app.css")}')
 
   %body
-    %nav.navbar.navbar-inverse.navbar-fixed-top
-      .container
+    %nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container-fluid
         .navbar-header
           %button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
             %span.sr-only
@@ -37,7 +37,6 @@
       %p.alert.alert-info(role="alert")= get_flash(@conn, :info)
       %p.alert.alert-danger(role="alert")= get_flash(@conn, :error)
 
-      %main(role="main")
-        = render @view_module, @view_template, assigns
+      = render @view_module, @view_template, assigns
 
     %script(src='#{static_path(@conn, "/js/app.js")}')

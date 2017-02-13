@@ -12,7 +12,7 @@ defmodule Scrawler do
       supervisor(Scrawler.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Scrawler.Endpoint, []),
-      supervisor(:pooler_sup, []),
+      :poolboy.child_spec(pool_name(), poolboy_config(), []),
       # Start your own worker by calling: Scrawler.Worker.start_link(arg1, arg2, arg3)
       # worker(Scrawler.Worker, [arg1, arg2, arg3]),
     ]
@@ -28,5 +28,18 @@ defmodule Scrawler do
   def config_change(changed, _new, removed) do
     Scrawler.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp pool_name() do
+    :phantom_pool
+  end
+
+  defp poolboy_config() do
+    [
+      {:name, {:local, pool_name()}},
+      {:worker_module, Scrawler.Workers.PhantomWorker},
+      {:size, 10},
+      {:max_overflow, 5}
+    ]
   end
 end

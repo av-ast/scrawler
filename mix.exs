@@ -20,8 +20,7 @@ defmodule Scrawler.Mixfile do
     [
       mod: {Scrawler, []},
       applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :hound, :ex_machina, :crawlie],
-      included_applications: [:pooler]
+                    :phoenix_ecto, :postgrex, :hound, :ex_machina, :crawlie, :poolboy]
     ]
   end
 
@@ -44,7 +43,7 @@ defmodule Scrawler.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:hound, "~> 1.0"},
-      {:pooler, github: "seth/pooler", tag: "1.5.2"},
+      {:poolboy, "~> 1.5"},
       {:ex_machina, "~> 1.0"},
       {:crawlie, "~> 0.3.0"},
       {:floki, "~> 0.12.0"},
@@ -52,7 +51,8 @@ defmodule Scrawler.Mixfile do
 
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev}
+      {:ex_doc, "~> 0.11", only: :dev},
+      {:credo, "~> 0.5", only: [:dev, :test]}
     ]
   end
 

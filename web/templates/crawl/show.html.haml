@@ -31,7 +31,7 @@
       - for link <- @crawl.links do
         %tr
           %td= link.id
-          %td= link link.title, to: link.url
+          %td= link.title
           %td= link link.url, to: link.url
           %td= link "Screenshot", to: Link.screenshot_url(link)
 

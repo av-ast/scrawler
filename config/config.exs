@@ -8,8 +8,8 @@ use Mix.Config
 # General application configuration
 config :scrawler,
   ecto_repos: [Scrawler.Repo],
-  screenshots_base_path: "/tmp/storage/screenshots",
-  screenshots_base_url: "http://localhost:8000"
+  screenshots_base_path: "#{:erlang.element(2, File.cwd)}/priv/static/screenshots",
+  screenshots_base_url: "/screenshots"
 
 # Configures the endpoint
 config :scrawler, Scrawler.Endpoint,

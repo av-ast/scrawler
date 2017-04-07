@@ -20,25 +20,10 @@ web:
     - BUNDLE_PATH=/bundle_cache
     - PHANTOMJS_HOST=phantomjs
     - PHANTOMJS_PORT=8910
-  volumes_from:
-    - bundle_cache
-    - static_server
+
 db:
   image: postgres
 
 phantomjs:
   image: wernight/phantomjs
   command: phantomjs --wd
-
-bundle_cache:
-  image: busybox
-  volumes:
-    - /bundle_cache
-
-static_server:
-  image: ruby
-  command: ruby -run -ehttpd "/tmp/storage/screenshots" -p8000
-  ports:
-    - 8000:8000
-  volumes:
-    - /tmp/storage/screenshots

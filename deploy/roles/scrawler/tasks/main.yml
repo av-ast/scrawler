@@ -1,0 +1,16 @@
+---
+
+- name: prepare projects folder
+  file: path=/projects state=directory
+
+- name: download sources
+  git:
+    repo: 'https://github.com/av-ast/scrawler.git'
+    dest: /projects/scrawler
+
+- name: build scrawler image
+  command: chdir=/projects/scrawler docker-compose build
+
+- name: run scrawler
+  command: chdir=/projects/scrawler daemon -- docker-compose up
+

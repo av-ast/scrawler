@@ -9,7 +9,7 @@ web:
   links:
     - db
     - phantomjs
-  command: mix do local.hex --force, compile, ecto.create, ecto.migrate, phoenix.server
+  command: mix do local.hex --force, local.rebar --force, deps.get, compile, ecto.create, ecto.migrate, phoenix.server
   environment:
     - DATABASE_HOST=db
     - DATABASE_PORT=5432

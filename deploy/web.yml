@@ -5,3 +5,5 @@
 
   roles:
     - docker
+    - docker-compose
+    - scrawler

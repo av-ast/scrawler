@@ -1,0 +1,19 @@
+---
+
+- name: uninstall packages
+  pip: name={{ item }} state=absent
+  with_items:
+    - docker-compose
+    - docker-py
+
+- name: install packages with compatible versions
+  pip: name={{ item.name }} version={{ item.version }} state=present
+  with_items:
+    - name:
+        docker-compose
+      version:
+        1.9.0
+    - name:
+        docker-py
+      version:
+        1.10.6

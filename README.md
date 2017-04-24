@@ -9,3 +9,9 @@ To start Scrawler:
   * Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+Provisioning:
+
+    $ ansible-galaxy install abaez.docker
+    $ cd deploy
+    $ ansible-playbook web.yml

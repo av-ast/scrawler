@@ -8,9 +8,12 @@
     repo: 'https://github.com/av-ast/scrawler.git'
     dest: /projects/scrawler
 
-- name: build scrawler image
-  command: chdir=/projects/scrawler docker-compose build
+- name: run
+  docker_service:
+    build: yes
+    project_name: scrawler
+    project_src: /projects/scrawler
+  register: output
 
-- name: run scrawler
-  command: chdir=/projects/scrawler daemon -- docker-compose up
-
+- debug:
+    var: output

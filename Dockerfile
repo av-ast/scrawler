@@ -3,7 +3,7 @@ FROM elixir:latest
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
-RUN curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
+RUN sh -c 'curl --silent --location https://deb.nodesource.com/setup_6.x | bash -'
 
 RUN apt-get update -qq && apt-get install -y build-essential postgresql-9.5 postgresql-client-9.5 libpq-dev curl \
             nodejs build-essential libpq-dev curl postgresql-client \

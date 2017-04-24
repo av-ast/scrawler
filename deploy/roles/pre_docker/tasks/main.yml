@@ -1,0 +1,18 @@
+---
+
+- name: Add Docker public key for CS Docker Engine packages
+  rpm_key:
+    state: present
+    key: "https://sks-keyservers.net/pks/lookup?op=get&search=0xee6d536cf7dc86e2d7d56f59a178ac6c6238f52e"
+
+- name: Add docker repository
+  yum_repository:
+    name: docker
+    description: Repository with docker related packages
+    baseurl: "https://packages.docker.com/1.13/yum/repo/main/centos/7"
+
+- name: install packages
+  yum: name={{ item }} update_cache=yes
+  with_items:
+    - python-docker-py
+    - docker-engine
